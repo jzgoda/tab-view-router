@@ -1,14 +1,15 @@
 import { NgModule, NO_ERRORS_SCHEMA } from "@angular/core";
 import { NativeScriptModule } from "nativescript-angular/nativescript.module";
 
-import {AppComponent, MainComponent, Tab1Component, Tab2Component, Tab1Child} from "./app.component";
+import {AppComponent, MainComponent, MyTabs, TabComponent} from "./app.component";
 import {NativeScriptRouterModule} from "nativescript-angular";
 
 export const routes = [
     { path: "", redirectTo: "main", pathMatch: "full" },
     { path: "main", component: MainComponent,
         children: [
-            { path: "", component: Tab1Child }
+            { path: "", redirectTo: "tab/0", pathMatch: "full" },
+            { path: "tab/:tab", component: TabComponent }
         ]
     },
     /** other paths, such as a long screen...etc **/
@@ -18,9 +19,8 @@ export const routes = [
     declarations: [
         AppComponent,
         MainComponent,
-        Tab1Component,
-        Tab1Child,
-        Tab2Component
+		TabComponent,
+        MyTabs
     ],
     bootstrap: [AppComponent],
     imports: [
